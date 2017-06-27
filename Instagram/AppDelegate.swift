@@ -24,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://stormy-lake-31864.herokuapp.com/parse"
             })
         )
+        if let currentUser = PFUser.current() {
+            print("Welcome back \(currentUser.username!)")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+            window?.rootViewController = homeViewController
+        }
         return true
     }
 

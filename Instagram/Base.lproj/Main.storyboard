@@ -64,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="iir-7v-WYx">
             <objects>
-                <viewController id="lwO-40-pvy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="lwO-40-pvy" customClass="HomeViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DtY-8o-cGI"/>
                         <viewControllerLayoutGuide type="bottom" id="QiI-4B-01g"/>
@@ -75,12 +75,22 @@
                     <view key="view" contentMode="scaleToFill" id="EvA-rN-jk1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INa-RE-efN">
+                                <rect key="frame" x="32" y="28" width="55" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logOutPress:" destination="lwO-40-pvy" eventType="touchUpInside" id="J5p-O6-o66"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJl-tS-CHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="858" y="137"/>
+            <point key="canvasLocation" x="856.79999999999995" y="136.28185907046478"/>
         </scene>
     </scenes>
 </document>
