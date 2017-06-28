@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let currentUser = PFUser.current() {
             print("Welcome back \(currentUser.username!)")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+            let homeViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
             window?.rootViewController = homeViewController
         }
         return true
