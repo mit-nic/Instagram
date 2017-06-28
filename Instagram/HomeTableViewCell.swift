@@ -7,16 +7,30 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class HomeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var postImageView: PFImageView!
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var commentLabel: UIView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userCaptionLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     
+    
+    var post: PFObject! {
+        didSet {
+            self.postImageView.file = post["media"] as? PFFile
+            self.postImageView.loadInBackground()
+            let author = post["author"] as! PFUser
+            self.userLabel.text = author.username
+            self.captionLabel.text = post["caption"] as? String
+            self.userCaptionLabel.text = author.username
+            
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,5 +42,4 @@ class HomeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

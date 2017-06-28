@@ -148,16 +148,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeTableViewCell" rowHeight="519" id="ikt-KG-vg5" customClass="HomeTableViewCell" customModule="Instagram" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HomeTableViewCell" rowHeight="519" id="ikt-KG-vg5" customClass="HomeTableViewCell" customModule="Instagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="519"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ikt-KG-vg5" id="3Kc-c9-ABD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="518.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="518.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a1V-3T-nWr">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a1V-3T-nWr" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="47" width="375" height="375"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIw-38-IkV">
                                                     <rect key="frame" x="8" y="0.0" width="37" height="39"/>
@@ -207,6 +208,7 @@
                                             <outlet property="userCaptionLabel" destination="FA5-1F-Iiu" id="Rux-X7-fEN"/>
                                             <outlet property="userImageView" destination="cIw-38-IkV" id="ZiZ-OR-gcb"/>
                                             <outlet property="userLabel" destination="m1b-o1-qie" id="dkC-LU-O1C"/>
+                                            <segue destination="sCa-H8-oI2" kind="showDetail" id="wJW-rC-vFn"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -247,7 +249,7 @@
         <!--Post Details-->
         <scene sceneID="rQn-rO-6cE">
             <objects>
-                <viewController id="sCa-H8-oI2" sceneMemberID="viewController">
+                <viewController id="sCa-H8-oI2" customClass="PhotoDetailsViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MnI-YJ-hDe"/>
                         <viewControllerLayoutGuide type="bottom" id="N64-LN-U1W"/>
@@ -255,13 +257,45 @@
                     <view key="view" contentMode="scaleToFill" id="iTp-pJ-yKH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B5k-Gj-vnf" customClass="PFImageView">
+                                <rect key="frame" x="16" y="72" width="343" height="303"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezf-Cv-jVi">
+                                <rect key="frame" x="16" y="383" width="79" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SR-MJ-1E9">
+                                <rect key="frame" x="136" y="383" width="60" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSv-sG-gwV">
+                                <rect key="frame" x="16" y="412" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Post Details" id="HOd-Kr-lNr"/>
+                    <connections>
+                        <outlet property="captionLabel" destination="1SR-MJ-1E9" id="X3e-LW-rrb"/>
+                        <outlet property="postImageView" destination="B5k-Gj-vnf" id="GJj-lf-UeB"/>
+                        <outlet property="userLabel" destination="Ezf-Cv-jVi" id="tXm-Zb-7HO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihn-rS-DIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5233" y="134"/>
+            <point key="canvasLocation" x="5232.8000000000002" y="133.5832083958021"/>
         </scene>
         <!--Profile-->
         <scene sceneID="9Yp-dz-xPP">
@@ -402,7 +436,6 @@
         <!--Navigation Controller-->
         <scene sceneID="rr1-5K-CUY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DFC-pn-VtQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="227-X5-dGQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jKa-dA-W9b">
@@ -414,26 +447,9 @@
                         <segue destination="ZqQ-3O-SlT" kind="relationship" relationship="rootViewController" id="AWX-YJ-XsW"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DFC-pn-VtQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4489" y="-591"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cH1-Pz-G9e">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aax-mK-B9V" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T4S-kD-ZeK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="sCa-H8-oI2" kind="relationship" relationship="rootViewController" id="8gu-IK-ENp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ow4-4v-mGN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4489" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xPv-nI-PFQ">

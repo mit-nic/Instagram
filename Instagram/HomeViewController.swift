@@ -8,13 +8,13 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var homeTableView: UITableView!
     
     var posts: [PFObject]? = []
-    var cell: HomeTableViewCell? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         homeTableView.delegate = self
         refresh()
         // Do any additional setup after loading the view.
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        
+        homeTableView.insertSubview(refreshControl, at: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,25 +51,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cell = homeTableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
-        
+        let cell = homeTableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         let post = posts![indexPath.row]
-        let user = post["author"] as? PFUser
-        let image = post["media"] as? PFFile
-        if let image = image {
-            image.getDataInBackground(block: { (imageData:Data?, error:Error?) in
-                if error == nil {
-                    let newImage = UIImage(data: imageData!)
-                    self.cell?.postImageView.image = newImage
-                }
-            })
-        }
-        cell!.userCaptionLabel.text = user?.username
-        cell!.captionLabel.text = post["caption"] as! String
-        cell!.userLabel.text = user?.username
-//        cell.postImageView.image = cellImage!
-        
-        return cell!
+        cell.post = post
+        return cell
     }
     
     func refresh() {
@@ -73,6 +63,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         query.includeKey("author")
         query.includeKey("media")
         query.includeKey("caption")
+        query.limit = 20
         
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             if let error = error {
@@ -84,5 +75,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
     }
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        refresh()
+        refreshControl.endRefreshing()
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if type(of: segue.destination) != UINavigationController.self {
+            let vc = segue.destination as! PhotoDetailsViewController
+            let cell = sender as! HomeTableViewCell
+            print(vc.postImageView)
+            print(cell.postImageView.file)
+            vc.postImageView = cell.postImageView.file
+            vc.postImageView.loadInBackground()
+            vc.userLabel.text = cell.userLabel.text
+            vc.captionLabel.text = cell.captionLabel.text
+        }
+    }
+    
 }
 
