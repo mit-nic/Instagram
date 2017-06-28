@@ -43,18 +43,18 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
 //    @IBAction func cameraPress(_ sender: Any) {
-//        let vc = UIImagePickerController()
-//        vc.delegate = self
-//        vc.allowsEditing = true
-//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//            print("Camera is available 📸")
-//            vc.sourceType = .camera
-//        } else {
-//            print("Camera 🚫 available so we will use photo library instead")
-//            vc.sourceType = .photoLibrary
-//        }
-//        self.present(vc, animated: true, completion: nil)
-//    }
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            print("Camera is available 📸")
+            vc.sourceType = .camera
+        } else {
+            print("Camera 🚫 available so we will use photo library instead")
+            vc.sourceType = .photoLibrary
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

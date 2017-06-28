@@ -29,9 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let homeViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
             window?.rootViewController = homeViewController
+            
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("logoutNotification"), object: nil, queue: OperationQueue.main) { (Notification) in
+                // go to login
+            }
+            
+            NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
+
         }
         return true
-    }
+        
+            }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -7,29 +7,62 @@
 //
 
 import UIKit
+import Parse
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var captionTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        postImageView.image = editedImage
+        
+        dismiss(animated: true, completion: nil)
+        
     }
-    */
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func photoLibraryPress(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        vc.sourceType = .photoLibrary
+        self.present(vc, animated: true, completion: nil)
+    }
 
+    @IBAction func cameraPress(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            print("Camera is available 📸")
+            vc.sourceType = .camera
+        } else {
+            //raise error saying camera isn't available
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func shareAction(_ sender: Any) {
+        Post.postUserImage(image: postImageView.image, withCaption: captionTextField.text) { (success: Bool, error: Error?) in
+            if success {
+                print("Post successful!")
+                self.dismiss(animated: true, completion: nil)
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
