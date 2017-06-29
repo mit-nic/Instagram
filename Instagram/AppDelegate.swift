@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
                 configuration.applicationId = "Instagram"
-                configuration.clientKey = "asdlkfjalksdfjalksdjdfalkdj"  // set to nil assuming you have not set clientKey
+                configuration.clientKey = "asdlkfjalksdfjalksdjdfalkdj"
                 configuration.server = "https://stormy-lake-31864.herokuapp.com/parse"
             })
         )

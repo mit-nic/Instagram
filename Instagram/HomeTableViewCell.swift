@@ -11,20 +11,19 @@ import Parse
 import ParseUI
 
 @objc protocol HomeTableViewCellDelegate {
-    func didSelect(homeTableViewCell: HomeTableViewCell)
+    func didSelectPhoto(homeTableViewCell: HomeTableViewCell)
+    func didSelectUser(homeTableViewCell: HomeTableViewCell)
 }
 
 class HomeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var postImageView: PFImageView!
     @IBOutlet weak var userLabel: UILabel!
-    @IBOutlet weak var commentLabel: UIView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userCaptionLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     
-    weak var delegate: HomeTableViewCellDelegate?
-    
+    var delegate: HomeTableViewCellDelegate?
     
     var post: PFObject! {
         didSet {
@@ -49,7 +48,8 @@ class HomeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func dfdsf() {
-        delegate?.didSelect(homeTableViewCell: self)
+    @IBAction func photoTap(_ sender: Any) {
+        delegate!.didSelectPhoto(homeTableViewCell: self)
     }
+    
 }

@@ -65,4 +65,7 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
+    @IBAction func cancelPress(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }

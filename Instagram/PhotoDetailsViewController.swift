@@ -21,14 +21,17 @@ class PhotoDetailsViewController: UIViewController {
     var user: String?
     var caption: String?
     
+    weak var delegate: HomeTableViewCellDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        postImageView.file = imageFile
-//        postImageView.loadInBackground()
-//        userLabel.text = user!
-//        captionLabel.text = caption!
+        postImageView.file = imageFile
+        postImageView.loadInBackground()
+        userLabel.text = user!
+        captionLabel.text = caption!
 
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {

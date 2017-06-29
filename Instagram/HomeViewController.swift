@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HomeTableViewCellDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var homeTableView: UITableView!
     
@@ -58,10 +58,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    func didSelect(homeTableViewCell: HomeTableViewCell) {
-        
-    }
-    
     func refresh() {
         let query = PFQuery(className: "Post")
         query.addDescendingOrder("createdAt")
@@ -88,16 +84,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if type(of: segue.destination) != UINavigationController.self {
+        
+        if segue.identifier == "detailSegue" {
             let vc = segue.destination as! PhotoDetailsViewController
-//            let cell = sender as! HomeTableViewCell
-            
-//            let author = post["author"] as! PFUser
-//            vc.imageFile = post["media"] as! PFFile
-//            vc.user = author.username
-//            vc.caption = post["caption"] as! String
+            let cell = sender as! HomeTableViewCell
+            vc.imageFile = cell.postImageView.file
+            vc.user = cell.userLabel.text
+            vc.caption = cell.captionLabel.text
+        }
+        
+        if type(of: segue.destination) != UINavigationController.self {
         }
     }
     
 }
+
+
+extension HomeViewController: HomeTableViewCellDelegate {
+    func didSelectPhoto(homeTableViewCell: HomeTableViewCell) {
+        performSegue(withIdentifier: "detailSegue", sender: homeTableViewCell)
+    }
+    
+    func didSelectUser(homeTableViewCell: HomeTableViewCell) {
+    }
+}
+
+
 
