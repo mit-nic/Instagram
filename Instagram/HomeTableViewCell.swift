@@ -10,6 +10,10 @@ import UIKit
 import Parse
 import ParseUI
 
+@objc protocol HomeTableViewCellDelegate {
+    func didSelect(homeTableViewCell: HomeTableViewCell)
+}
+
 class HomeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var postImageView: PFImageView!
@@ -18,6 +22,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userCaptionLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    
+    weak var delegate: HomeTableViewCellDelegate?
     
     
     var post: PFObject! {
@@ -41,5 +47,9 @@ class HomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func dfdsf() {
+        delegate?.didSelect(homeTableViewCell: self)
     }
 }

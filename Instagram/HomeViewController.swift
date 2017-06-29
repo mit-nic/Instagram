@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HomeTableViewCellDelegate {
     
     @IBOutlet weak var homeTableView: UITableView!
     
@@ -52,9 +52,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
+        cell.delegate = self
         let post = posts![indexPath.row]
         cell.post = post
         return cell
+    }
+    
+    func didSelect(homeTableViewCell: HomeTableViewCell) {
+        
     }
     
     func refresh() {
@@ -85,13 +90,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if type(of: segue.destination) != UINavigationController.self {
             let vc = segue.destination as! PhotoDetailsViewController
-            let cell = sender as! HomeTableViewCell
-            print(vc.postImageView)
-            print(cell.postImageView.file)
-            vc.postImageView = cell.postImageView.file
-            vc.postImageView.loadInBackground()
-            vc.userLabel.text = cell.userLabel.text
-            vc.captionLabel.text = cell.captionLabel.text
+//            let cell = sender as! HomeTableViewCell
+            
+//            let author = post["author"] as! PFUser
+//            vc.imageFile = post["media"] as! PFFile
+//            vc.user = author.username
+//            vc.caption = post["caption"] as! String
         }
     }
     
