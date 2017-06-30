@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var userLabel: UILabel!
@@ -18,11 +18,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileCollectionView: UICollectionView!
     
     var user: PFUser = PFUser.current()!
-    var posts: [PFObject]?
+    var posts: [PFObject]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        profileCollectionView.dataSource = self
         refresh()
         
         profileImageView.layer.borderWidth = 1
@@ -52,9 +52,21 @@ class ProfileViewController: UIViewController {
                 print(error.localizedDescription)
             } else {
                 self.posts = objects
-//                self.homeTableView.reloadData()
+                self.profileCollectionView.reloadData()
             }
         }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return posts!.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = profileCollectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
+        let post = posts![indexPath.row]
+        cell.post = post
+        return cell
         
     }
     

@@ -7,7 +7,17 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class ProfileCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var profilePostImageView: PFImageView!
+    
+    var post: PFObject! {
+        didSet {
+            self.profilePostImageView.file = post["media"] as? PFFile
+            self.profilePostImageView.loadInBackground()
+        }
+    }
     
 }
