@@ -31,10 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = homeViewController
             
             NotificationCenter.default.addObserver(forName: NSNotification.Name("logoutNotification"), object: nil, queue: OperationQueue.main) { (Notification) in
-                // go to login
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+                self.window?.rootViewController = vc
             }
-            
-            NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
 
         }
         return true
