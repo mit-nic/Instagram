@@ -24,6 +24,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     
     var delegate: HomeTableViewCellDelegate?
+    var createdDate: String?
     
     var post: PFObject! {
         didSet {
@@ -33,6 +34,10 @@ class HomeTableViewCell: UITableViewCell {
             self.userLabel.text = author.username
             self.captionLabel.text = post["caption"] as? String
             self.userCaptionLabel.text = author.username
+            let date = post.createdAt!
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-MM-yyyy"
+            self.createdDate = formatter.string(from: date)
             
         }
     }

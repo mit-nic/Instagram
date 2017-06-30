@@ -16,10 +16,12 @@ class PhotoDetailsViewController: UIViewController {
     @IBOutlet weak var postImageView: PFImageView!
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var createdLabel: UILabel!
     
     var imageFile: PFFile?
     var user: String?
     var caption: String?
+    var date: String?
     
     weak var delegate: HomeTableViewCellDelegate?
     
@@ -29,6 +31,7 @@ class PhotoDetailsViewController: UIViewController {
         postImageView.loadInBackground()
         userLabel.text = user!
         captionLabel.text = caption!
+        createdLabel.text = "Created on: " + date!
 
         // Do any additional setup after loading the view.
         

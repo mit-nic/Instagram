@@ -21,7 +21,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         homeTableView.dataSource = self
         homeTableView.delegate = self
         refresh()
-        // Do any additional setup after loading the view.
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
@@ -31,7 +30,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
 
@@ -47,7 +46,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts!.count //number of posts
+        return posts!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,8 +61,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let query = PFQuery(className: "Post")
         query.addDescendingOrder("createdAt")
         query.includeKey("author")
-        query.includeKey("media")
-        query.includeKey("caption")
         query.limit = 20
         
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
@@ -91,9 +88,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             vc.imageFile = cell.postImageView.file
             vc.user = cell.userLabel.text
             vc.caption = cell.captionLabel.text
-        }
-        
-        if type(of: segue.destination) != UINavigationController.self {
+            vc.date = cell.createdDate
         }
     }
     

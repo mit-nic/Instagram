@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5CCE41B5C9581D52FAF86640 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783CC6DBD28DC23B0BB6F5CE /* Pods_Instagram.framework */; };
-		A90152A11F059CC000BBEBF1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90152A01F059CC000BBEBF1 /* Profile.swift */; };
+		A90152A41F05B74A00BBEBF1 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90152A31F05B74A00BBEBF1 /* ProfileEditViewController.swift */; };
 		A90C48691F0586A80024F48F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90C48671F0586A80024F48F /* Main.storyboard */; };
 		A91578C41F02FA2E00F3052E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91578C31F02FA2E00F3052E /* LoginViewController.swift */; };
 		A97505F81F02F73A005BEC07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97505F71F02F73A005BEC07 /* AppDelegate.swift */; };
@@ -49,7 +49,7 @@
 		3502CB08B3F65918A3467E22 /* Pods-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramUITests/Pods-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4453D2FC328A9BACD6BD3370 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		783CC6DBD28DC23B0BB6F5CE /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A90152A01F059CC000BBEBF1 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		A90152A31F05B74A00BBEBF1 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		A90C48681F0586A80024F48F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A91578C31F02FA2E00F3052E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A97505F41F02F73A005BEC07 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,7 +118,6 @@
 		A90152A21F059CCB00BBEBF1 /* NSObjects */ = {
 			isa = PBXGroup;
 			children = (
-				A90152A01F059CC000BBEBF1 /* Profile.swift */,
 				A9C29B711F0317810083E7FC /* Post.swift */,
 			);
 			name = NSObjects;
@@ -187,6 +186,7 @@
 				A91578C31F02FA2E00F3052E /* LoginViewController.swift */,
 				A9C29B811F0325C80083E7FC /* PostViewController.swift */,
 				A9D15D011F04616B00FE6146 /* PhotoDetailsViewController.swift */,
+				A90152A31F05B74A00BBEBF1 /* ProfileEditViewController.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -495,7 +495,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A91578C41F02FA2E00F3052E /* LoginViewController.swift in Sources */,
-				A90152A11F059CC000BBEBF1 /* Profile.swift in Sources */,
 				A9C29B7A1F0323B00083E7FC /* ProfileCollectionViewCell.swift in Sources */,
 				A9C29B821F0325C80083E7FC /* PostViewController.swift in Sources */,
 				A97505F81F02F73A005BEC07 /* AppDelegate.swift in Sources */,
@@ -504,6 +503,7 @@
 				A9C29B7F1F0324D70083E7FC /* HomeTableViewCell.swift in Sources */,
 				A9C29B6E1F0302150083E7FC /* HomeViewController.swift in Sources */,
 				A9C29B721F0317810083E7FC /* Post.swift in Sources */,
+				A90152A41F05B74A00BBEBF1 /* ProfileEditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
