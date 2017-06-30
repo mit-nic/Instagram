@@ -26,8 +26,10 @@ class ProfileEditViewController: UIViewController, UIImagePickerControllerDelega
         profileImageView.layer.cornerRadius = profileImageView.frame.height/2
         profileImageView.clipsToBounds = true
         
-        profileImageView.file = imageFile!
-        profileImageView.loadInBackground()
+        if let imageFile = imageFile {
+            profileImageView.file = imageFile
+            profileImageView.loadInBackground()
+        }
         // Do any additional setup after loading the view.
     }
 

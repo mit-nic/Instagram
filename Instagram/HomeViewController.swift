@@ -26,6 +26,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         
         homeTableView.insertSubview(refreshControl, at: 0)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,6 +92,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             vc.caption = cell.captionLabel.text
             vc.date = cell.createdDate
         }
+        
+        if segue.identifier == "profileSegue" {
+            let vc = segue.destination as! ProfileViewController
+            let cell = sender as! HomeTableViewCell
+            vc.user = (cell.post["author"] as? PFUser)!
+        }
     }
     
 }
@@ -101,6 +109,7 @@ extension HomeViewController: HomeTableViewCellDelegate {
     }
     
     func didSelectUser(homeTableViewCell: HomeTableViewCell) {
+        performSegue(withIdentifier: "profileSegue", sender: homeTableViewCell)
     }
 }
 

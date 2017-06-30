@@ -65,6 +65,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = profileCollectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
         let post = posts![indexPath.row]
+        cell.delegate = self
         cell.post = post
         return cell
         
@@ -76,5 +77,20 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
             vc.user = user
             vc.imageFile = profileImageView.file
         }
+        
+        if segue.identifier == "profileDetailSegue" {
+            let vc = segue.destination as! PhotoDetailsViewController
+            let cell = sender as! ProfileCollectionViewCell
+            vc.user = user.username
+            vc.caption = cell.caption
+            vc.date = cell.createdDate
+            vc.imageFile = cell.profilePostImageView.file
+        }
+    }
+}
+
+extension ProfileViewController: ProfileCollectionViewCellDelegate {
+    func didSelectPhoto(profileCollectionViewCell: ProfileCollectionViewCell) {
+        performSegue(withIdentifier: "profileDetailSegue", sender: profileCollectionViewCell)
     }
 }

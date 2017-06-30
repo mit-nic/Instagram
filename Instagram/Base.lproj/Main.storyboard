@@ -202,10 +202,13 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="cIw-38-IkV">
-                                                    <rect key="frame" x="8" y="8" width="37" height="39"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-o1-qie">
+                                                    <rect key="frame" x="53" y="17" width="79" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FA5-1F-Iiu">
                                                     <rect key="frame" x="16" y="459" width="84" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -234,13 +237,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-o1-qie">
-                                                    <rect key="frame" x="53" y="17" width="79" height="21"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pg-KP-V5t">
+                                                    <rect key="frame" x="8" y="8" width="130" height="39"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <connections>
+                                                        <action selector="userTap:" destination="ikt-KG-vg5" eventType="touchUpInside" id="x8y-sg-8U3"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="cIw-38-IkV" customClass="PFImageView">
+                                                    <rect key="frame" x="8" y="8" width="37" height="39"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -285,6 +292,7 @@
                     <connections>
                         <outlet property="homeTableView" destination="TID-JL-TV3" id="Wj7-Xa-veJ"/>
                         <segue destination="sCa-H8-oI2" kind="show" identifier="detailSegue" id="E9s-UQ-ocz"/>
+                        <segue destination="0B6-UR-cQS" kind="show" identifier="profileSegue" id="KKA-0p-U8k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJl-tS-CHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -398,6 +406,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="160" height="158"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAl-Yt-AaF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="158"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="photoTap:" destination="nOw-Hn-iaT" eventType="touchUpInside" id="KaR-hZ-UvH"/>
+                                                    </connections>
+                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ic8-Qv-rxD" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="160" height="158"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -419,6 +434,7 @@
                         <outlet property="profileCollectionView" destination="7MI-pn-lkN" id="WXM-E5-J45"/>
                         <outlet property="profileImageView" destination="t3o-Sz-o5g" id="eAu-dg-ekY"/>
                         <outlet property="userLabel" destination="sTf-QG-5pV" id="X3S-uU-mvP"/>
+                        <segue destination="sCa-H8-oI2" kind="show" identifier="profileDetailSegue" id="fF8-nr-WZb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyL-bf-cC4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -563,4 +579,8 @@
         <image name="profile_tab" width="25" height="25"/>
         <image name="squarelogowhite" width="800" height="800"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="KKA-0p-U8k"/>
+        <segue reference="fF8-nr-WZb"/>
+    </inferredMetricsTieBreakers>
 </document>
