@@ -35,7 +35,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-
     @IBAction func logOutPress(_ sender: Any) {
         PFUser.logOutInBackground { (error:Error?) in
             if let error = error {
