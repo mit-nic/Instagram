@@ -36,6 +36,9 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
         
         profileImageView.file = user["picture"] as? PFFile
         profileImageView.loadInBackground()
+        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.refresh), userInfo: nil, repeats: false)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +90,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
             vc.imageFile = cell.profilePostImageView.file
         }
     }
+    
 }
 
 extension ProfileViewController: ProfileCollectionViewCellDelegate {

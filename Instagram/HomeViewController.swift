@@ -41,9 +41,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print(error.localizedDescription)
             } else {
                 print("User logged out")
+                NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
             }
         }
-        NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
+        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

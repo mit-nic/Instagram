@@ -24,17 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://stormy-lake-31864.herokuapp.com/parse"
             })
         )
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("logoutNotification"), object: nil, queue: OperationQueue.main) { (Notification) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+            self.window?.rootViewController = vc
+        }
         if let currentUser = PFUser.current() {
             print("Welcome back \(currentUser.username!)")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let homeViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
             window?.rootViewController = homeViewController
-            
-            NotificationCenter.default.addObserver(forName: NSNotification.Name("logoutNotification"), object: nil, queue: OperationQueue.main) { (Notification) in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
-                self.window?.rootViewController = vc
-            }
 
         }
         return true
